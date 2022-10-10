@@ -13,6 +13,7 @@ interface Props {
   closeForm: () => void;
   createOrEdit: (activity: Activity) => void;
   deleteActivity: (id: string) => void;
+  submitting: boolean;
 }
 
 const AcitivtyDashBoard = ({
@@ -25,10 +26,11 @@ const AcitivtyDashBoard = ({
   closeForm,
   createOrEdit,
   deleteActivity,
+  submitting,
 }: Props) => {
   return (
     <div className="flex w-full">
-      <div className="">
+      <div className="overflow-scroll p-3">
         <ActivityCard
           activities={activities}
           selectActivity={selectActivity}
@@ -51,6 +53,7 @@ const AcitivtyDashBoard = ({
             closeForm={closeForm}
             activity={selectedActivity}
             createOrEdit={createOrEdit}
+            submitting={submitting}
           />
         )}
       </div>

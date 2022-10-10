@@ -4,6 +4,6 @@
 
 @layer components {
   .form-input {
-    @apply input input-bordered w-full max-w-xs;
+    @apply input input-bordered w-10/12;
   }
 }

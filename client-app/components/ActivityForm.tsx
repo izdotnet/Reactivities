@@ -15,12 +15,14 @@ interface Props {
   closeForm: () => void;
   activity: Activity | undefined;
   createOrEdit: (activity: Activity) => void;
+  submitting: boolean;
 }
 
 export default function ActivityForm({
   activity,
   closeForm,
   createOrEdit,
+  submitting,
 }: Props) {
   const {
     register,
@@ -36,11 +38,11 @@ export default function ActivityForm({
 
   return (
     <form
-      className="flex flex-col items-center p-4 card min-w-max mx-auto bg-base-100 shadow-md space-y-4"
+      className="flex flex-col items-center p-4 card mx-auto bg-base-100 shadow-md space-y-4 w-[400px]"
       onSubmit={handleSubmit(onSubmit)}
       autoComplete="off"
     >
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col space-y-2 w-full items-center">
         <input
           defaultValue={activity?.title ?? ""}
           className="form-input"
@@ -75,6 +77,7 @@ export default function ActivityForm({
           defaultValue={activity?.date ?? ""}
           className="form-input"
           placeholder="Date"
+          type="date"
           {...register("date", { required: true })}
         />
         {errors.date && <span className="text-red-500">Date is required</span>}
@@ -100,7 +103,11 @@ export default function ActivityForm({
 
       <div className="btn-group">
         <button type="submit" className="btn btn-active">
-          Submit
+          {submitting ? (
+            <span className="animate-bounce">Submitting</span>
+          ) : (
+            "Submit"
+          )}
         </button>
         <button onClick={() => closeForm()} className="btn">
           Cancel

@@ -12,36 +12,37 @@ const ActivityCard = ({
   deleteActivity,
 }: Props) => {
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       {activities.map((act) => (
         <div className="card w-96 bg-base-100 shadow-xl" key={act.id}>
-          <div className="card-body space-y-1">
+          <div className="card-body space-y-4">
             <section>
-              <h2 className="card-title">{act.title}</h2>
+              <div className="flex justify-between items-center">
+                <h2 className="card-title">{act.title}</h2>
+                <div className="badge badge-outline badge-secondary">
+                  {act.category}
+                </div>
+              </div>
+
               <p className="text-sm text-gray-400">{act.date}</p>
             </section>
 
             <section>
               <p>{act.description}</p>
               <p className="text-sm font-semibold">{act.venue}</p>
-              <div className="card-actions justify-end">
-                <div className="badge badge-outline bg-secondary text-white">
-                  {act.category}
-                </div>
-              </div>
             </section>
 
             <section>
               <div className="btn-group w-full">
                 <button
                   onClick={() => selectActivity(act.id)}
-                  className="btn btn-active w-1/2"
+                  className="btn btn-active w-2/3"
                 >
                   View
                 </button>
                 <button
                   onClick={() => deleteActivity(act.id)}
-                  className="btn btn-error w-1/2"
+                  className="btn btn-error btn-outline w-1/3"
                 >
                   Delete
                 </button>
